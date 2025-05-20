@@ -1,0 +1,138 @@
+{
+  "articles": [
+    {
+      "file": "introducing_algoscan_dev.md",
+      "title": "Introducing Algoscan.dev: a real-time developer activity dashboard for the Algorand ecosystem",
+      "date": "2026-03-03",
+      "thumbnail": "/images/algoscan.svg",
+      "tags": ["algoscan", "algorand", "open-source", "devtools", "dashboard"]
+    },
+    {
+      "file": "x402_agentic_commerce_payments.md",
+      "title": "x402 on Algorand: pay-per-request APIs and agentic commerce as a new integration path",
+      "date": "2026-02-12",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "tooling",
+        "payments",
+        "x402",
+        "agents",
+        "api-monetization"
+      ]
+    },
+    {
+      "file": "brale_stablecoin_issuance_rails.md",
+      "title": "Brale expands stablecoin issuance rails to Algorand: regulated infrastructure and unified APIs",
+      "date": "2026-01-08",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "stablecoins",
+        "payments",
+        "compliance",
+        "tokenization",
+        "infra"
+      ]
+    },
+    {
+      "file": "native_p2p_networking_nodekit.md",
+      "title": "Native P2P networking becomes opt-in: NodeKit and a clearer path to decentralised participation",
+      "date": "2025-12-09",
+      "thumbnail": "/images/algorand.png",
+      "tags": ["algorand", "infra", "p2p", "node-ops", "decentralisation"]
+    },
+    {
+      "file": "liquid_auth_passkeys_decentralised_login.md",
+      "title": "Liquid Auth and passkeys: decentralised passwordless login via Pera",
+      "date": "2025-11-12",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "wallet",
+        "authentication",
+        "passkeys",
+        "webauthn",
+        "fido2"
+      ]
+    },
+    {
+      "file": "algorand_typescript_1_typed_contracts.md",
+      "title": "Algorand TypeScript 1.0: typed contracts, compiler releases, and language-server UX",
+      "date": "2025-11-10",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "sdk",
+        "typescript",
+        "smart-contracts",
+        "language-server",
+        "puya-ts"
+      ]
+    },
+    {
+      "file": "xgov_on_chain_grants_pipeline.md",
+      "title": "xGov expands: a structured on-chain grants pipeline and retroactive proposal intake",
+      "date": "2025-10-01",
+      "thumbnail": "/images/algorand.png",
+      "tags": ["algorand", "governance", "grants", "open-source", "xgov"]
+    },
+    {
+      "file": "consensus_v41_protocol_upgrade.md",
+      "title": "Consensus v41 and node releases: AVM and protocol surface expands with SHA-512 headers, access lists, and Falcon verification",
+      "date": "2025-09-16",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "protocol",
+        "node",
+        "avm",
+        "indexer",
+        "conduit",
+        "post-quantum"
+      ]
+    },
+    {
+      "file": "wormhole_ntt_multichain_token_transfers.md",
+      "title": "Wormhole NTT on Algorand: native token transfers as a multichain primitive",
+      "date": "2025-07-01",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "interoperability",
+        "wormhole",
+        "ntt",
+        "defi",
+        "bridge"
+      ]
+    },
+    {
+      "file": "mtbill_rwa_tokenization_algorand.md",
+      "title": "mTBILL on Algorand: tokenised Treasury exposure with measurable latency and cost",
+      "date": "2025-05-29",
+      "thumbnail": "/images/algorand.png",
+      "tags": ["algorand", "tokenization", "rwa", "defi", "asa"]
+    },
+    {
+      "file": "intermezzo_enterprise_custody_api.md",
+      "title": "Intermezzo: open-source custody and orchestration API targeting enterprise-grade integration",
+      "date": "2025-04-06",
+      "thumbnail": "/images/algorand.png",
+      "tags": [
+        "algorand",
+        "infra",
+        "enterprise",
+        "custody",
+        "vault",
+        "integrations"
+      ]
+    },
+    {
+      "file": "algokit_3_toolchain.md",
+      "title": "AlgoKit 3.0: modernising the default Algorand developer workflow",
+      "date": "2025-03-26",
+      "thumbnail": "/images/algorand.png",
+      "tags": ["algorand", "tooling", "algokit", "devx", "typescript", "python"]
+    }
+  ]
+}

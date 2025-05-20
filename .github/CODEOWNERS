@@ -1,0 +1,31 @@
+# CODEOWNERS
+
+## AlgoScanArtifacts
+
+## GitHub requests review from the listed owners for matching paths
+
+## Syntax: pattern owner [owner ...]
+
+## Owners may be @users, @org/teams, or email addresses
+
+## Rule precedence: the last matching pattern wins
+
+## Reference: `https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners`
+
+## Default ownership applies repository-wide
+
+* @NT-Nova
+
+## Catalog file (explicit ownership)
+
+tracked_repos.json @NT-Nova
+
+## CI and automation assets
+
+.github/ @NT-Nova
+.github/workflows/ @NT-Nova
+.github/scripts/ @NT-Nova
+
+## Security policy
+
+SECURITY.md @NT-Nova

@@ -1,0 +1,94 @@
+name: "🗑️ Request removal from tracked list"
+description: >
+  Request that a repository be removed from tracked_repos.json.
+  Use this for legitimate projects that no longer belong in the catalog
+  (e.g. deprecated, transferred, renamed, scope change).
+title: "[Removal] owner/repo-name — reason"
+labels:
+  - "catalog: removal-request"
+  - "needs-triage"
+assignees:
+  - NT-Nova
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request that a repository be removed from `tracked_repos.json`.
+
+        If the repository is **malicious or harmful**, use the
+        [Report Invalid / Harmful Repository](https://github.com/NT-Nova/AlgoScanArtifacts/issues/new?template=report_invalid_repo.yml) form instead.
+
+        If you are the repository owner or maintainer requesting removal, please
+        make that clear in the "Requester relationship" field.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository (`owner/name`)
+      description: Exact `owner/name` as it appears in `tracked_repos.json`.
+      placeholder: "e.g. some-org/some-repo"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason for removal
+      options:
+        - Repository archived / deprecated with no active successor
+        - Repository transferred to a new location (provide new canonical below)
+        - Repository renamed (provide new canonical below)
+        - Project is no longer Algorand-related
+        - Duplicate of another entry in the catalog
+        - Owner / maintainer requests removal
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: >
+        Provide context. Include dates, links to official announcements, or
+        any other information that helps maintainers triage this request.
+      placeholder: |
+        The repository was archived on YYYY-MM-DD. The official
+        announcement is at: https://...
+    validations:
+      required: true
+
+  - type: input
+    id: replacement
+    attributes:
+      label: Replacement / canonical location (if applicable)
+      description: >
+        If the project moved or was renamed, what is the new `owner/name`?
+        Leave blank if no replacement exists.
+      placeholder: "e.g. new-org/new-repo-name"
+    validations:
+      required: false
+
+  - type: input
+    id: relationship
+    attributes:
+      label: Your relationship to the repository
+      description: >
+        e.g. "I am the maintainer", "I am a contributor", "I am a user",
+        "I have no direct affiliation".
+      placeholder: "Maintainer of some-org/some-repo"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have verified that this repository is currently listed in `tracked_repos.json`.
+          required: true
+        - label: >
+            If this is a transfer or rename, I have confirmed that the replacement
+            canonical entry is not already in `tracked_repos.json`.
+          required: false

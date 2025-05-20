@@ -1,0 +1,93 @@
+name: "🚨 Report invalid / harmful repository"
+description: >
+  Report a repository in tracked_repos.json that is malicious, deceptive,
+  spam, or otherwise should not be in the AlgoScan catalog.
+title: "[Report] owner/repo-name — brief reason"
+labels:
+  - "catalog: report"
+  - "needs-triage"
+assignees:
+  - NT-Nova
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping keep the AlgoScan catalog trustworthy.
+        Please fill in all fields so maintainers can triage quickly.
+
+        > **Sensitive reports** (malware, active exploits, credentials in the wild) — do
+        > **not** use this form. Use the private disclosure path in
+        > [SECURITY.md](../SECURITY.md) instead.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository (`owner/name`)
+      description: Exact `owner/name` as it appears in `tracked_repos.json`.
+      placeholder: "e.g. some-org/some-repo"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: concern_type
+    attributes:
+      label: Concern type
+      description: Select the category that best describes the issue.
+      options:
+        - Malicious / contains malware or phishing
+        - Deceptive / impersonates a legitimate project (typosquatting, brand abuse)
+        - Spam / bot-generated / low-effort
+        - Archived with no active successor (dead signal)
+        - Transferred to a different canonical location
+        - Not Algorand-related
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: >
+        Explain the concern clearly and factually. Include what you observed,
+        when you observed it, and why it violates the catalog's quality standards.
+      placeholder: |
+        The repository at some-org/some-repo appears to be a fork of ...
+        It contains ... which suggests ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: >
+        Links, screenshots, CVE numbers, or other verifiable references.
+        At least one piece of evidence is required.
+      placeholder: |
+        - https://github.com/some-org/some-repo/blob/main/...
+        - Screenshot showing ...
+    validations:
+      required: true
+
+  - type: input
+    id: suggested_replacement
+    attributes:
+      label: Suggested replacement (optional)
+      description: >
+        If the repo was transferred or renamed, what is the correct canonical
+        entry? Use `owner/name` format.
+      placeholder: "e.g. correct-org/correct-repo"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have verified that this repository is currently listed in `tracked_repos.json`.
+          required: true
+        - label: I am not reporting a security vulnerability that should be disclosed privately.
+          required: true
