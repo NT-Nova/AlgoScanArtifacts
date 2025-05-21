@@ -1,7 +1,6 @@
 [
   [":all", "ALGODAO", "AlgoDAO"],
-  [":all", "algodesk-io", "Algodesk IO"],
-  [":all", "algodjango", "Algodjango"],
+  [":all", "algodesk", "Algodesk"],
   [":all", "AlgoDoggo", "AlgoDoggo"],
   [":all", "AlgoDrops", "AlgoDrops"],
   [":all", "algoduino", "Algoduino"],
@@ -29,11 +28,7 @@
   [":all", "Algorand-Developer-Retreat", "Algorand Developer Retreat"],
   [":all", "algorand-devrel", "Algorand-Devrel"],
   [":all", "algorand-guy", "Algorand Guy"],
-  [
-    ":all",
-    "Algorand-Hackathon-Teams-Nigeria",
-    "Algorand Hackathon Teams Nigeria"
-  ],
+  [":all", "Algorand-Hackathon-Teams-Nigeria", "Algorand Hackathon Teams Nigeria"],
   [":all", "algorand-hackers", "Algorand Hackers"],
   [":all", "algorand-naming-service", "Algorand Naming Service"],
   [":all", "algorand-school", "Algorand School"],
@@ -78,6 +73,7 @@
   [":all", "block-foundation", "Block Foundation"],
   [":all", "bobeu", "Bobeu"],
   [":all", "compx-labs", "Compx Labs"],
+  [":all", "ipaleka", "Ipaleka"],
   ["blockadjacent", "aggrefi-bots"],
   ["BlockBloom", "Algonache"],
   ["BlockBloom", "Asset-Deployment"],
