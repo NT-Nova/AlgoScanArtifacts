@@ -1,4 +1,5 @@
 [
+  [":all", "ALGODAO", "AlgoDAO"],
   [ "ALGODAO", "algoNFTs", "Algonfts" ],
   [ "AlgoDoggo", "algo-msgpack", "Algo Msgpack" ],
   [ "AlgoDoggo", "algorand-sdk-testing", "Algorand Sdk Testing" ],
