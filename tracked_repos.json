@@ -1,4 +1,5 @@
 [
+  [ "NT-Nova", "AlgoScanArtifacts" ],
   [ "ALGODAO", "algoNFTs" ],
   [ "AlgoDoggo", "algo-msgpack" ],
   [ "AlgoDoggo", "algorand-sdk-testing" ],
