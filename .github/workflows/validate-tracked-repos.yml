@@ -1,0 +1,116 @@
+name: Validate tracked_repos.json
+
+on:
+  pull_request:
+    paths:
+      - "tracked_repos.json"
+      - ".github/scripts/validate-tracked-repos.js"
+      - ".github/workflows/validate-tracked-repos.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "tracked_repos.json"
+      - ".github/scripts/validate-tracked-repos.js"
+      - ".github/workflows/validate-tracked-repos.yml"
+  workflow_dispatch: {} # Allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate:
+    name: Validate JSON catalog
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # -----------------------------------------------------------------------
+      # 1. Check out the PR branch (not the merge commit, so diffs are accurate)
+      # -----------------------------------------------------------------------
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history — needed for diff annotation step
+
+      # -----------------------------------------------------------------------
+      # 2. Set up Node.js (built-in to ubuntu-latest; pinned for reproducibility)
+      # -----------------------------------------------------------------------
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # -----------------------------------------------------------------------
+      # 3. Run the validation script
+      #    The script exits 1 on any failure, which fails this job and blocks merge.
+      # -----------------------------------------------------------------------
+      - name: Run validation script
+        id: validate
+        run: node .github/scripts/validate-tracked-repos.js
+
+      # -----------------------------------------------------------------------
+      # 4. On pull requests — compute added entries diff and annotate the run
+      # -----------------------------------------------------------------------
+      - name: Annotate added entries (PR only)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+
+          echo "## Changes to tracked_repos.json" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+
+          node - <<'NODEEOF' >> "$GITHUB_STEP_SUMMARY"
+          const { execSync } = require('child_process');
+          const base = process.env.BASE_SHA;
+
+          let baseTxt;
+          try {
+            baseTxt = execSync(`git show ${base}:tracked_repos.json`, { encoding: 'utf8' });
+          } catch (e) {
+            baseTxt = '[]';
+          }
+          const headTxt = require('fs').readFileSync('tracked_repos.json', 'utf8');
+
+          const baseSet = new Set(
+            JSON.parse(baseTxt).map(([o, n]) => `${o.toLowerCase()}/${n.toLowerCase()}`)
+          );
+          const headEntries = JSON.parse(headTxt);
+
+          const added   = headEntries.filter(([o, n]) => !baseSet.has(`${o.toLowerCase()}/${n.toLowerCase()}`));
+          const headSet = new Set(headEntries.map(([o2,n2]) => `${o2.toLowerCase()}/${n2.toLowerCase()}`));
+          const removed = JSON.parse(baseTxt).filter(([o, n]) => !headSet.has(`${o.toLowerCase()}/${n.toLowerCase()}`));
+
+          console.log(`**${added.length}** repo(s) added, **${removed.length}** repo(s) removed.`);
+          console.log('');
+          if (added.length) {
+            console.log('### Added');
+            for (const [o, n] of added) console.log(`- [\`${o}/${n}\`](https://github.com/${o}/${n})`);
+            console.log('');
+          }
+          if (removed.length) {
+            console.log('### Removed');
+            for (const [o, n] of removed) console.log(`- \`${o}/${n}\``);
+            console.log('');
+          }
+          if (added.length === 0 && removed.length === 0) {
+            console.log('_No entries were added or removed (formatting-only change)._');
+          }
+          NODEEOF
+
+      # -----------------------------------------------------------------------
+      # 5. Final status badge line
+      # -----------------------------------------------------------------------
+      - name: Print final status
+        if: always()
+        run: |
+          if [ "${{ steps.validate.outcome }}" = "success" ]; then
+            echo "✅ tracked_repos.json is valid."
+          else
+            echo "❌ tracked_repos.json failed validation. See errors above."
+            exit 1
+          fi
